@@ -1,0 +1,52 @@
+.link
+{
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    margin-right: 20px;
+
+}
+.link:hover
+{
+    color: rgb(130, 0, 0);
+    transition: 0.4s;
+}
+.navbar-text
+{
+    position: absolute;
+    width: 35%;
+    left: 0;
+    text-align: center;
+    margin: auto;
+    font-size: 30px;
+    color: black;
+}
+
+@font-face { font-family: JuneBug; src: url('DeathheadKeltcaps-qo00.ttf'); } 
+    .link {
+         font-family: ZombieSlayer;
+      }
+@font-face { font-family: ZombieSlayer; src: url('ZombieSlayer-zjOX.ttf'); } 
+      .navbar-text  {
+           font-family: ZombieSlayer;
+        }
+@font-face { font-family: ZombieSlayer; src: url('ZombieSlayer-zjOX.ttf'); } 
+      svg {
+           font-family: ZombieSlayer;
+        }
+svg
+{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 30px;
+}
+image
+{
+    height: 240px;
+    width: 240px;
+}
+.pyramid-group
+{
+    background-color: black;
+}

@@ -1,0 +1,24 @@
+button
+{
+    border-radius:5px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size:15.9px;
+    background-color: #e7e7e7; 
+    color: black;
+    transition-duration: 0.4s;
+    margin-top: 10px;
+    color: black; 
+    border: 2px solid gray;
+}
+
+button:hover {
+    background-color: #555555;
+    color: white;
+  }
+@font-face { font-family: ZombieSlayer; src: url('ZombieSlayer-zjOX.ttf'); } 
+  button{
+           font-family: ZombieSlayer;
+    }

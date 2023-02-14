@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title> Piramida bolest</title>
+    <link href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity= "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"> </script>
+    <link href="style.css" rel="stylesheet" >
+    <link href="https://www.fontspace.com/deathhead-keltcaps-font-f4073" rel="stlyesheet">
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"> </script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://s3-ap-southeast-1.amazonaws.com/charts.pykih.com/gists/pyramid.js"></script>
+</head>
+  
+<body>
+    <nav  id="navbar_top" class="navbar navbar-expand-lg"style=" background:rgb(117,118,122,255);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+            <img src="slika.jpg" style="width: 115px; height: 115px;" alt="Logo" width="60" height="60">
+          </a><p class="navbar-text ">BOLESTI</p>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="mx-auto"></div>
+            <ul class="navbar-nav">
+              <li class="nav-item1" >
+                <a  class="link" href="pocetna.html">POČETNA</a>
+              </li>
+              <li class="nav-item2">
+                <a class="link" href="piramidabolesti.html">PIRAMIDA BOLESTI</a>
+              </li>
+              <li class="nav-item3">
+                <a class="link " href="graf.html">NAJGORE PANDEMIJE I EPIDEMIJE U POVIJESTI</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div id="myTooltip"></div>
+        <script>
+          var data = [
+                {disease: 'Bubonska kuga', deaths: 200000000, image:"image6.png"}, 
+                {disease: 'GripaA/H1N1', deaths: 50000000, image:"image4.png"},
+				        {disease: 'Covid19', deaths: 7000000, image:"image5.png"}, 
+                {disease: 'Cocoliztli', deaths: 15000000, image:"image7.png"}, 
+                {disease:'Hiv/Aids', deaths: 40000000, image:"image2.png"}, 
+                {disease:'Velike boginje', deaths: 300000000, image:"image3.png"},  
+                {disease:	'Tifus', deaths: 3000000, image:"image1.png"}
+              ];
+            
+            var width = 900,
+                height = 450;
+            
+            var color = d3.scale.ordinal()
+                .range(["#E0E0E0","#C0C0C0","#A0A0A0","#808080","#606060", "#404040", "#202020"]);
+            
+            var svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g");
+
+            
+                
+                var pyramid = d3.pyramid()
+                    .size([width,height])
+                    .value(function(d) { return d.deaths; });
+                
+                var line = d3.svg.line()
+                    .interpolate("linear-closed")
+                    .x(function(d,i) { return d.x; })
+                    .y(function(d,i) { return d.y; });
+
+                var Tooltip = d3.select("#myTooltip")
+                            .append("div")
+                            .style("opacity", 0)
+                            .attr("class", "tooltip")
+                            .style("background-color", "grey")
+                            .style("border", "solid")
+                            .style("border-width", "2px")
+                            .style("border-radius", "5px")
+                            .style("padding", "5px");
+
+                var g = svg.selectAll("g")
+                    .data(pyramid(data))
+                    .enter().append("g")
+                    .attr("class", "pyramid-group")
+                    .on ("mouseover",function(d)
+                    {
+                        d3.select(this).transition()
+                        .duration(750)
+                        .attr("r", 15)
+                        .attr("fill", "orange");
+                        d3.select(this).append("image")
+                        .attr("xlink:href", d.image)
+                        .style("opacity",0)
+                        .transition()
+                        .duration(750)
+                        .style("opacity",1);
+                        Tooltip
+                            .style("opacity", 1)
+                            .html("Number of deaths: " + d.deaths)
+                            .style("right", 300 + "px")
+                            .style("top", 250 + "px")
+                            .style("font", "20px times")
+                            .style("font-style", "italic")
+                    })
+                    .on ("mouseout",function(d)
+                    {
+                        d3.select(this).transition()
+                        .duration(750)
+                        .attr("r", 15)
+                        .attr("fill", "black")
+                        d3.select("image").remove();
+                        Tooltip.style("opacity",0);
+                    });
+                
+                g.append("path")
+                    .attr("d", function (d){ return line(d.coordinates); })
+                    .style("fill", function(d) { return color(d.disease); });
+                
+                g.append("text")
+                    .attr({
+                      	"y": function (d,i) {
+                            return (d.coordinates[0].y + d.coordinates[1].y)/2+10;
+                        },
+                        "x": function (d,i) { return width/2;}
+                    })
+                    .style("text-anchor", "middle")
+                    .text(function(d) { return d.disease; })
+        </script>
+</body>
+</html>

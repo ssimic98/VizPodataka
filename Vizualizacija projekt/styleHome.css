@@ -1,0 +1,90 @@
+.link
+{
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.link:hover
+{
+    color: rgb(130, 0, 0);
+    transition: 0.4s;
+}
+
+.navbar-text
+{
+    position: absolute;
+    width: 35%;
+    left: 0;
+    text-align: center;
+    margin: auto;
+    font-size: 30px;
+    color: black;
+}
+body
+{
+    padding:0;
+    margin: 0;
+    width: 100%;
+    height: 100%;background-color: #E0E0E0
+}
+.carousel
+{
+    margin-top: 100px;
+}
+.carousel-inner
+{
+    height: 200px;
+}
+.carousel-caption
+{
+    color: black;
+    top: 50%;
+}
+.px-height
+{
+    height: 300px;
+}
+@font-face { font-family: ZombieSlayer; src: url('DeathheadKeltcaps-qo00.ttf'); } 
+    .link {
+         font-family: ZombieSlayer;
+      }
+@font-face { font-family: ZombieSlayer; src: url('ZombieSlayer-zjOX.ttf'); } 
+      .navbar-text  {
+           font-family: ZombieSlayer;
+        }
+@font-face { font-family: ZombieSlayer; src: url('ZombieSlayer-zjOX.ttf'); } 
+.carousel-caption  {
+             font-family: ZombieSlayer;
+          }
+
+        .carousel .carousel-control {
+            opacity: 1
+          }
+          .carousel .carousel-control.left {
+            background-image: linear-gradient(to right, rgb(0, 0, 0) 0, rgba(0, 0, 0, 0) 100%);
+          }
+          .carousel .carousel-control.right {
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgb(0, 0, 0) 100%);
+          }
+          
+          
+           /* add darkness over the image */
+          .item {
+            position: relative
+          }
+          .item:before {
+            content: '';
+            background: rgba(0, 0, 0, 0.2);
+            /* change this value from 0.1 to 1; */
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+          }
